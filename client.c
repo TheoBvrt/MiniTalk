@@ -1,7 +1,11 @@
 #include "minitalk.h"
 
-int main ()
+int main (int argc, char *argv[])
 {
-	ft_printf("test");
+	if (argc != 3 && ft_strlen(argv[2]) != 0)
+	{
+		ft_printf("Erreur ! Essayer ce format : ./client (pid) (argument)");
+		return (0);
+	}
 	return (1);
 }

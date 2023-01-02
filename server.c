@@ -2,6 +2,10 @@
 
 int main ()
 {
-	ft_printf("test");
+	int	pid;
+
+	pid = getpid();
+	ft_printf("Server PID : %d", pid);
+
 	return (1);
 }
