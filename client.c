@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   client.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/05 11:50:02 by tbouvera          #+#    #+#             */
+/*   Updated: 2023/01/08 10:43:06 by tbouvera         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minitalk.h"
 
-void send_char(int pid, char c)
+void	send_char(int pid, char c)
 {
 	unsigned char	bit;
 	unsigned char	mask;
@@ -13,17 +25,17 @@ void send_char(int pid, char c)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
+		usleep(100);
 		bit++;
 	}
 }
 
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	int pid;
-	int i;
+	int	pid;
+	int	i;
 
 	i = 0;
-
 	if (argc == 3 && ft_strlen(argv[2]) != 0)
 	{
 		pid = ft_atoi(argv[1]);
@@ -32,6 +44,7 @@ int main(int argc, char *argv[])
 			send_char(pid, argv[2][i]);
 			i ++;
 		}
+		send_char (pid, '\n');
 	}
 	else
 	{
