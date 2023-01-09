@@ -1,10 +1,41 @@
 #include "minitalk.h"
 
-int main (int argc, char *argv[])
+void send_char(int pid, char c)
 {
-	if (argc != 3 && ft_strlen(argv[2]) != 0)
+	unsigned char	bit;
+	unsigned char	mask;
+
+	bit = 0;
+	while (bit < 8)
 	{
-		ft_printf("Erreur ! Essayer ce format : ./client (pid) (argument)");
+		mask = (unsigned char)1 << bit;
+		if (c & mask)
+			kill(pid, SIGUSR1);
+		else
+			kill(pid, SIGUSR2);
+		bit++;
+	}
+}
+
+int main(int argc, char *argv[])
+{
+	int pid;
+	int i;
+
+	i = 0;
+
+	if (argc == 3 && ft_strlen(argv[2]) != 0)
+	{
+		pid = ft_atoi(argv[1]);
+		while (argv[2][i] != '\0')
+		{
+			send_char(pid, argv[2][i]);
+			i ++;
+		}
+	}
+	else
+	{
+		ft_printf("Erreur ! Essayer ce format : ./client <PID> <Message>");
 		return (0);
 	}
 	return (1);
