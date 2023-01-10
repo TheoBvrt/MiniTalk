@@ -12,8 +12,22 @@
 
 #include "minitalk.h"
 
+void	clear_buff(char *buff)
+{
+	int	i;
+
+	i = 0;
+	while (i < 50000)
+	{
+		buff[i] = '\0';
+		i ++;
+	}
+}
+
 void	read_char(int signal)
 {
+	static char	buff[50000];
+	static int	index;
 	static int	bit;
 	static int	i;
 
@@ -22,7 +36,15 @@ void	read_char(int signal)
 	bit ++;
 	if (bit == 8)
 	{
-		ft_printf("%c", i);
+		buff[index] = i;
+		ft_printf("%d", index);
+		index ++;
+		if (i == '\0')
+		{
+			ft_printf("%s", buff);
+			clear_buff(buff);
+			index = 0;
+		}
 		bit = 0;
 		i = 0;
 	}
