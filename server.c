@@ -37,11 +37,10 @@ void	read_char(int signal)
 	if (bit == 8)
 	{
 		buff[index] = i;
-		ft_printf("%d", index);
 		index ++;
 		if (i == '\0')
 		{
-			ft_printf("%s", buff);
+			ft_printf("%s\n", buff);
 			clear_buff(buff);
 			index = 0;
 		}
