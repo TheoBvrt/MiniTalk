@@ -1,6 +1,6 @@
 NAME = minitalk
-SRCS_CLIENT = client.c
-SRCS_SERVER = server.c
+CLIENT = client
+SERVER = server
 
 OBJS_CLIENT = ${SRCS_CLIENT:.c=.o}
 OBJS_SERVER = ${SRCS_SERVER:.c=.o}
@@ -8,15 +8,15 @@ CC = gcc
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 
-all : ${OBJS_CLIENT} ${OBJS_SERVER} ${NAME}
+all: $(CLIENT) $(SERVER)
 
-%.o : %.c
-	$(CC) -c $< -o $@
+$(CLIENT) : client.c 
+		${MAKE} bonus -C ./Libft 
+		$(CC) client.c ./Libft/libft.a -o client
+$(SERVER) : server.c
+		${MAKE} bonus -C ./Libft 
+		$(CC) server.c ./Libft/libft.a -o server
 
-${NAME} :
-	${MAKE} bonus -C ./Libft 
-	$(CC) $(OBJS_CLIENT) $(CFLAGS) ./Libft/libft.a -o client
-	$(CC) $(OBJS_SERVER) $(CFLAGS) ./Libft/libft.a -o server
 
 clean:
 	${RM} ${OBJS_CLIENT}
