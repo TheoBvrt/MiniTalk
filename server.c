@@ -12,6 +12,18 @@
 
 #include "minitalk.h"
 
+void	print_string(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		write(1, &str[i], 1);
+		i ++;
+	}
+}
+
 void	clear_buff(char *buff)
 {
 	int	i;
@@ -40,7 +52,8 @@ void	read_char(int signal)
 		index ++;
 		if (i == '\0')
 		{
-			ft_printf("%s\n", buff);
+			print_string(buff);
+			write(1, "\n", 1);
 			clear_buff(buff);
 			index = 0;
 		}
@@ -55,6 +68,7 @@ int	main(int argc, char **argv)
 
 	pid = getpid();
 	ft_printf("Server PID : %d\n", pid);
+
 	while (argc == 1)
 	{
 		signal (SIGUSR1, read_char);
