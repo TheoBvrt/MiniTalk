@@ -6,7 +6,7 @@
 #    By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/18 09:41:19 by tbouvera          #+#    #+#              #
-#    Updated: 2022/10/19 09:48:15 by tbouvera         ###   ########.fr        #
+#    Updated: 2023/03/09 11:04:33 by tbouvera         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,13 +33,13 @@ CFLAGS = -Wall -Wextra -Werror
 .c.o :
 	${CC} ${CFLAGS} -c $< -o $(<:.c=.o)
 
-all : ${NAME}
+all : bonus
 
 ${NAME} : ${OBJS}
-	ar rc ${NAME} ${OBJS}
+	ar rcs ${NAME} ${OBJS}
 
 bonus: ${OBJS_B} ${OBJS}
-	ar rc ${NAME} ${OBJS} ${OBJS_B}
+	ar rcs ${NAME} ${OBJS} ${OBJS_B}
 
 clean:
 	${RM} ${OBJS} ${OBJS_B}

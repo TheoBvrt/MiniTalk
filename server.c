@@ -6,7 +6,7 @@
 /*   By: tbouvera <tbouvera@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 11:50:02 by tbouvera          #+#    #+#             */
-/*   Updated: 2023/03/09 10:50:12 by tbouvera         ###   ########.fr       */
+/*   Updated: 2023/03/09 11:36:52 by tbouvera         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	main(int argc, char **argv)
 {
 	int	pid;
 
+	(void) argv;
 	pid = getpid();
 	ft_printf("Server PID : %d\n", pid);
 	while (argc == 1)
