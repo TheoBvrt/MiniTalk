@@ -17,7 +17,6 @@ $(SERVER) : server.c
 		${MAKE} bonus -C ./Libft 
 		$(CC) server.c ./Libft/libft.a -o server
 
-
 clean:
 	${RM} ${OBJS_CLIENT}
 	${RM} ${OBJS_SERVER}
